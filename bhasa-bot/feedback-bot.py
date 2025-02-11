@@ -42,7 +42,7 @@ def main():
     for row in new_feedback.data:
         message = dedent(f"""
             ```
-            Star rating {"★ "*row["rating"]}{"★"*(5-row["rating"])}
+            Star rating {"★ "*row["rating"]}
             Emoji rating {EMOJI_RATING_MAP[row["emoji_rating"]]}
             {f'Comments: {row["comments"]}' if row["comments"] else ""}
             ```
