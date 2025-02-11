@@ -33,7 +33,7 @@ def main():
 
     if (not new_feedback.data):
         print("No new feedback found")
-        exit(1)
+        return
 
     conn = http.client.HTTPSConnection("discord.com")
 
