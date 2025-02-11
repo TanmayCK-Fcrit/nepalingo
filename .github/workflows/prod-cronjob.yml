@@ -12,6 +12,7 @@ on:
 jobs:
   run_cronjob:
     runs-on: ubuntu-latest
+    environment: Prod Github Action Cronjob
     defaults:
       run:
         working-directory: ./bhasa-bot
