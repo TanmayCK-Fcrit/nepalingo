@@ -34,5 +34,4 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
           DISCORD_WEBHOOK_ENDPOINT: ${{ secrets.DISCORD_WEBHOOK_ENDPOINT }}
-        run: |
-          python main.py
+        run: python feedback-bot.py
