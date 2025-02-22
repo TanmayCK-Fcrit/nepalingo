@@ -4,10 +4,10 @@ on:
   push:
     branches:
       - "main"
-    schedule:
-      # 8AM EST
-      # 1PM UTC
-      - cron: "0 13 * * *"
+  schedule:
+    # 8AM EST
+    # 1PM UTC
+    - cron: "0 13 * * *"
 
 jobs:
   run_cronjob:
