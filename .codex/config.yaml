@@ -1,0 +1,80 @@
+project:
+  name: NepaLingo
+  summary: >-
+    Web application for learning Nepal's indigenous languages built with React +
+    TypeScript (Vite). Repository also includes a lightweight Python bot that
+    relays Supabase feedback to Discord.
+  default_branch: main
+  code_paths:
+    - nepalingo-web/src
+    - bhasa-bot
+  languages:
+    - TypeScript
+    - React
+    - TailwindCSS
+    - Python
+
+workflow:
+  issue_labels:
+    include:
+      - codex-ready
+      - good-first-issue
+    exclude:
+      - blocked
+      - needs-design
+  branch_template: issue/{issue_number}-{slug}
+  pr_title_template: "[{issue_number}] {issue_title}"
+  commit_message_guidance: >-
+    Use concise, active commit subjects (e.g., "feat: add XYZ" or "fix:
+    address ABC") and reference the issue number in the PR description.
+  definition_of_done:
+    - Lint, format-check, and build commands succeed.
+    - Relevant documentation, config, and Supabase SQL files updated alongside code.
+    - New UI strings include fallbacks or translation placeholders.
+
+environment:
+  prerequisites:
+    node: "20"
+    package_manager: pnpm@8
+    python: "3.11"
+  setup:
+    - run: pnpm install
+      cwd: nepalingo-web
+    - run: pip install -r requirements.txt
+      cwd: bhasa-bot
+  commands:
+    lint:
+      - run: pnpm run lint
+        cwd: nepalingo-web
+    format_check:
+      - run: pnpm run format-check
+        cwd: nepalingo-web
+    format_write:
+      - run: pnpm run format
+        cwd: nepalingo-web
+    build:
+      - run: pnpm run build
+        cwd: nepalingo-web
+    preview:
+      - run: pnpm run dev
+        cwd: nepalingo-web
+    python_lint: []
+  required_checks:
+    - lint
+    - format_check
+    - build
+
+prompts:
+  coding_standards: |-
+    - Prefer functional React components with explicit prop typing.
+    - Keep Tailwind class strings organized by layout, spacing, typography, then color.
+    - Use React Router data APIs already present; avoid introducing redundant routing helpers.
+    - When touching Supabase interactions, reuse the existing client utilities and handle loading/error states.
+  testing_guidance: |-
+    - Run the listed required checks before submitting a PR.
+    - Add ad-hoc scripts under scripts/ only when they include usage documentation.
+  doc_expectations: |-
+    - Update README sections or in-app copy when behavior or entry points change.
+    - Surface notable environment variable changes in PR descriptions.
+  review_prompt: |-
+    Provide a short summary, list of key changes, test evidence, and open questions in the PR body.
